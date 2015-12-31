@@ -38,8 +38,10 @@
 #include <kmessagebox.h>
 #include <kurllabel.h>
 #include <krun.h>
+#include <KIO/FileCopyJob>
+#include <kjobwidgets.h>
+#include <KIO/Job>
 
-#include <kio/netaccess.h>
 #include <kiconloader.h>
 #include <klineedit.h>
 #include <kguiitem.h>
@@ -289,7 +291,11 @@ void HighscoresDialog::slotUser2()
 //   kDebug(11001) ;
     QUrl url = QFileDialog::getSaveFileUrl(this, tr("HighscoresDialog"), QUrl(), QString());
     if ( url.isEmpty() ) return;
-    if ( KIO::NetAccess::exists(url, KIO::NetAccess::SourceSide, this) ) {
+    KIO::StatJob *job = KIO::stat(url, KIO::StatJob::SourceSide, 0);
+    KJobWidgets::setWindow(job, this);
+    job->exec();
+    if (job->error())
+   {
         KGuiItem gi = KStandardGuiItem::save();
         gi.setText(i18n("Overwrite"));
         int res = KMessageBox::warningContinueCancel(this,
@@ -302,7 +308,9 @@ void HighscoresDialog::slotUser2()
     QTextStream stream(&tmp);
     internal->exportHighscores(stream);
     stream.flush();
-    KIO::NetAccess::upload(tmp.fileName(), url, this);
+        
+    KIO::FileCopyJob *job2 = KIO::file_copy(QUrl::fromLocalFile(tmp.fileName()), url);
+    
 }
 
 //-----------------------------------------------------------------------------

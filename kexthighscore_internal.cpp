@@ -32,8 +32,8 @@
 #include <QCryptographicHash>
 
 #include <kuser.h>
-#include <kio/netaccess.h>
 #include <kio/job.h>
+#include <QFile>
 #include <kmessagebox.h>
 #include <kcodecs.h>
 #include "kexthighscore.h"
@@ -629,8 +629,9 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
 {
     KIO::http_update_cache(url, true, QDateTime::fromTime_t(0)); // remove cache !
 
-    QString tmpFile;
-    if ( !KIO::NetAccess::download(url, tmpFile, parent) ) {
+    QString tmpFile;    
+    KIO::FileCopyJob *job = KIO::file_copy(url,QUrl::fromLocalFile(tmpFile));
+        if(!job) {
         QString details = i18n("Server URL: %1", url.host());
         KMessageBox::detailedSorry(parent, i18n(UNABLE_TO_CONTACT), details);
         return false;
@@ -638,7 +639,7 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
 
 	QFile file(tmpFile);
 	if ( !file.open(QIODevice::ReadOnly) ) {
-        KIO::NetAccess::removeTempFile(tmpFile);
+        QFile::remove(tmpFile);
         QString details = i18n("Unable to open temporary file.");
         KMessageBox::detailedSorry(parent, i18n(UNABLE_TO_CONTACT), details);
         return false;
@@ -647,7 +648,7 @@ bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
 	QTextStream t(&file);
 	QString content = t.readAll().trimmed();
 	file.close();
-    KIO::NetAccess::removeTempFile(tmpFile);
+    QFile::remove(tmpFile);
 
 	QDomDocument doc;
     if ( doc.setContent(content) ) {

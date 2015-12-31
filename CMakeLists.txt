@@ -8,6 +8,7 @@ find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Qml Qui
 find_package(KF5 REQUIRED COMPONENTS
   CoreAddons 
   Config 
+  DocTools
   ItemModels 
   WidgetsAddons 
   Config 
@@ -23,8 +24,7 @@ find_package(KF5 REQUIRED COMPONENTS
   Completion
   XmlGui
   KIO
-  NewStuff
-  KDELibs4Support
+  NewStuff  
   )
 
 find_package(KF5KDEGames 4.9.0 REQUIRED)
@@ -72,7 +72,7 @@ kconfig_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
 add_executable(kreversi ${kreversi_SRCS})
 
-target_link_libraries(kreversi Qt5::Svg KF5::Declarative KF5::XmlGui KF5::TextWidgets KF5KDEGames KF5::Completion KF5::DBusAddons KF5::KDELibs4Support)
+target_link_libraries(kreversi Qt5::Svg KF5::Declarative KF5::XmlGui KF5KDEGames KF5::Completion KF5::DBusAddons KF5::KIOWidgets KF5::IconThemes)
 
 install(TARGETS kreversi  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS} )
 
