@@ -26,7 +26,6 @@ import "globals.js" as Globals
 
 Item {
     id: tableContainer
-    anchors.fill: parent
 
     /**
       * Is board showing labels or not
@@ -109,6 +108,14 @@ Item {
         anchors.fill: parent
         spriteKey: "background"
     }
+
+    CanvasItem {
+        id: board_image
+        width: Math.min(parent.width, parent.height)
+        height: Math.min(parent.width, parent.height)
+        anchors.horizontalCenter: parent.horizontalCenter      
+        spriteKey: "board"     
+               }
 
     Board {
         id: board
