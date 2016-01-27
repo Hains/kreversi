@@ -7,29 +7,6 @@ find_package(ECM 1.7.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Qml Quick QuickWidgets Svg Test)
-<<<<<<< HEAD
-find_package(KF5 REQUIRED COMPONENTS
-  CoreAddons 
-  Config 
-  DocTools
-  ItemModels 
-  WidgetsAddons 
-  Config 
-  DBusAddons
-  DNSSD
-  Declarative
-  I18n
-  GuiAddons
-  Service
-  ConfigWidgets
-  ItemViews
-  IconThemes
-  Completion
-  XmlGui
-  KIO
-  NewStuff  
-  )
-=======
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     Completion
     Config
@@ -51,7 +28,6 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     WidgetsAddons
     XmlGui
 )
->>>>>>> 13ef7c49c371c5c6c6caa73492a61c4926112343
 
 find_package(KF5KDEGames 4.9.0 REQUIRED)
 
@@ -62,15 +38,8 @@ include(KDEInstallDirs)
 include(KDECompilerSettings)
 include(KDECMakeSettings)
 
-add_definitions(
-    -DQT_USE_FAST_CONCATENATION
-    -DQT_USE_FAST_OPERATOR_PLUS
-    -DQT_NO_CAST_FROM_ASCII
-    -DQT_NO_CAST_TO_ASCII
-#    -DQT_NO_CAST_FROM_BYTEARRAY
-    -DQT_NO_URL_CAST_FROM_STRING
-    -DQT_USE_QSTRINGBUILDER
-)
+add_definitions("-DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII")
+
 
 add_subdirectory(pics)
 add_subdirectory(sounds)
@@ -106,9 +75,6 @@ kconfig_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
 
 add_executable(kreversi ${kreversi_SRCS})
 
-<<<<<<< HEAD
-target_link_libraries(kreversi Qt5::Svg KF5::Declarative KF5::XmlGui KF5KDEGames KF5::Completion KF5::DBusAddons KF5::KIOWidgets KF5::IconThemes)
-=======
 target_link_libraries(kreversi
     Qt5::Svg
     KF5::Completion
@@ -120,7 +86,6 @@ target_link_libraries(kreversi
     KF5::XmlGui
     KF5KDEGames
 )
->>>>>>> 13ef7c49c371c5c6c6caa73492a61c4926112343
 
 install(TARGETS kreversi  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 
