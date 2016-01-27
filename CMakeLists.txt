@@ -16,12 +16,12 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     DBusAddons
     DNSSD
     Declarative
+    DocTools
     GuiAddons
     I18n
     IconThemes
     ItemModels
     ItemViews
-    KDELibs4Support
     KIO
     NewStuff
     Service
@@ -81,8 +81,8 @@ target_link_libraries(kreversi
     KF5::Crash
     KF5::DBusAddons
     KF5::Declarative
-    KF5::KDELibs4Support
-    KF5::TextWidgets
+    KF5::KIOWidgets 
+    KF5::IconThemes
     KF5::XmlGui
     KF5KDEGames
 )
