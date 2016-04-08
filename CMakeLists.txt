@@ -35,7 +35,7 @@ include(FeatureSummary)
 include(ECMAddAppIcon)
 include(ECMInstallIcons)
 include(KDEInstallDirs)
-include(KDECompilerSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
 include(KDECMakeSettings)
 
 add_definitions("-DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII")
