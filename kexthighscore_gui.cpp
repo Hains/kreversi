@@ -279,40 +279,6 @@ void HighscoresDialog::highscorePageChanged(KPageWidgetItem* page, KPageWidgetIt
     hsw->changeTab(_tab);
 }
 
-void HighscoresDialog::slotUser1()
-{
-//   kDebug(11001) ;
-    if ( KExtHighscore::configure(this) )
-        highscorePageChanged(currentPage(), 0);//update data
-}
-
-void HighscoresDialog::slotUser2()
-{
-//   kDebug(11001) ;
-    QUrl url = QFileDialog::getSaveFileUrl(this, tr("HighscoresDialog"), QUrl(), QString());
-    if ( url.isEmpty() ) return;
-    KIO::StatJob *job = KIO::stat(url, KIO::StatJob::SourceSide, 0);
-    KJobWidgets::setWindow(job, this);
-    job->exec();
-    if (job->error())
-   {
-        KGuiItem gi = KStandardGuiItem::save();
-        gi.setText(i18n("Overwrite"));
-        int res = KMessageBox::warningContinueCancel(this,
-                                 i18n("The file already exists. Overwrite?"),
-                                 i18n("Export"), gi);
-        if ( res==KMessageBox::Cancel ) return;
-    }
-    QTemporaryFile tmp;
-    tmp.open();
-    QTextStream stream(&tmp);
-    internal->exportHighscores(stream);
-    stream.flush();
-        
-    KIO::FileCopyJob *job2 = KIO::file_copy(QUrl::fromLocalFile(tmp.fileName()), url);
-    
-}
-
 //-----------------------------------------------------------------------------
 LastMultipleScoresList::LastMultipleScoresList(
                             const QVector<Score> &scores, QWidget *parent)

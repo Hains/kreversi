@@ -115,8 +115,6 @@ class HighscoresDialog : public KPageDialog
     HighscoresDialog(int rank, QWidget *parent);
 
  private slots:
-    void slotUser1();
-    void slotUser2();
     void tabChanged(int i) { _tab = i; }
     void highscorePageChanged(KPageWidgetItem *newpage, KPageWidgetItem *before);
 
