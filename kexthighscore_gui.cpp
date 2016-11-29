@@ -38,9 +38,6 @@
 #include <kmessagebox.h>
 #include <kurllabel.h>
 #include <krun.h>
-#include <KIO/FileCopyJob>
-#include <kjobwidgets.h>
-#include <KIO/Job>
 
 #include <kiconloader.h>
 #include <klineedit.h>

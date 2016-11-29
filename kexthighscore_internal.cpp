@@ -626,53 +626,8 @@ const char *UNABLE_TO_CONTACT =
 
 bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
                                 QDomNamedNodeMap *map)
-{
-    KIO::http_update_cache(url, true, QDateTime::fromTime_t(0)); // remove cache !
-
-    QString tmpFile;    
-    KIO::FileCopyJob *job = KIO::file_copy(url,QUrl::fromLocalFile(tmpFile));
-        if(!job) {
-        QString details = i18n("Server URL: %1", url.host());
-        KMessageBox::detailedSorry(parent, i18n(UNABLE_TO_CONTACT), details);
-        return false;
-    }
-
-	QFile file(tmpFile);
-	if ( !file.open(QIODevice::ReadOnly) ) {
-        QFile::remove(tmpFile);
-        QString details = i18n("Unable to open temporary file.");
-        KMessageBox::detailedSorry(parent, i18n(UNABLE_TO_CONTACT), details);
-        return false;
-    }
-
-	QTextStream t(&file);
-	QString content = t.readAll().trimmed();
-	file.close();
-    QFile::remove(tmpFile);
-
-	QDomDocument doc;
-    if ( doc.setContent(content) ) {
-        QDomElement root = doc.documentElement();
-        QDomElement element = root.firstChild().toElement();
-        if ( element.tagName()==QLatin1String( "success" ) ) {
-            if (map) *map = element.attributes();
-            return true;
-        }
-        if ( element.tagName()==QLatin1String( "error" ) ) {
-            QDomAttr attr = element.attributes().namedItem(QStringLiteral( "label" )).toAttr();
-            if ( !attr.isNull() ) {
-                QString msg = i18n(attr.value().toLatin1());
-                QString caption = i18n("Message from world-wide highscores "
-                                       "server");
-                KMessageBox::sorry(parent, msg, caption);
-                return false;
-            }
-        }
-    }
-    QString msg = i18n("Invalid answer from world-wide highscores server.");
-    QString details = i18n("Raw message: %1", content);
-    KMessageBox::detailedSorry(parent, msg, details);
-    return false;
+{  
+   return false;
 }
 
 bool ManagerPrivate::getFromQuery(const QDomNamedNodeMap &map,
