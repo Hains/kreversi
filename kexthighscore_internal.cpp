@@ -624,9 +624,11 @@ const char *DUMMY_STRINGS[] = {
 const char *UNABLE_TO_CONTACT =
     I18N_NOOP("Unable to contact world-wide highscore server");
 
-
-
-
+bool ManagerPrivate::doQuery(const QUrl &url, QWidget *parent,
+                                QDomNamedNodeMap *map)
+{  
+   return false;
+}
 
 bool ManagerPrivate::getFromQuery(const QDomNamedNodeMap &map,
                                   const QString &name, QString &value,
@@ -659,11 +661,37 @@ int ManagerPrivate::rank(const Score &score) const
 	return (i<_scoreInfos->maxNbEntries() ? (int)i : -1);
 }
 
+bool ManagerPrivate::modifySettings(const QString &newName,
+                                    const QString &comment, bool WWEnabled,
+                                    QWidget *widget)
+{
+    QString newKey;
+    bool newPlayer = false;
 
+    if (WWEnabled) {
+        newPlayer = _playerInfos->key().isEmpty()
+                    || _playerInfos->registeredName().isEmpty();
+        QUrl url = queryUrl((newPlayer ? Register : Change), newName);
+        Manager::addToQueryURL(url, QStringLiteral( "comment" ), comment);
 
+        QDomNamedNodeMap map;
+        bool ok = doQuery(url, widget, &map);
+        if ( !ok || (newPlayer && !getFromQuery(map, QStringLiteral( "key" ), newKey, widget)) )
+            return false;
+    }
 
-
-
+    bool ok = _hsConfig->lockForWriting(widget); // no GUI when locking
+    if (ok) {
+        // check again name in case the config file has been changed...
+        // if it has, it is unfortunate because the WWW name is already
+        // committed but should be very rare and not really problematic
+        ok = ( !_playerInfos->isNameUsed(newName) );
+        if (ok)
+            _playerInfos->modifySettings(newName, comment, WWEnabled, newKey);
+        _hsConfig->writeAndUnlock();
+    }
+    return ok;
+}
 
 void ManagerPrivate::convertToGlobal()
 {
@@ -741,11 +769,23 @@ int ManagerPrivate::submitLocal(const Score &score)
     return r;
 }
 
+bool ManagerPrivate::submitWorldWide(const Score &score,
+                                     QWidget *widget) const
+{
+    if ( score.type()==Lost && !trackLostGames ) return true;
+    if ( score.type()==Draw && !trackDrawGames ) return true;
 
+    QUrl url = queryUrl(Submit);
+    manager.additionalQueryItems(url, score);
+    int s = (score.type()==Won ? score.score() : (int)score.type());
+    QString str =  QString::number(s);
+    Manager::addToQueryURL(url, QStringLiteral( "score" ), str);
+    QCryptographicHash context(QCryptographicHash::Md5);
+    context.addData(QString(_playerInfos->registeredName() + str).toLatin1());
+    Manager::addToQueryURL(url, QStringLiteral( "check" ), QLatin1String( context.result().toHex() ));
 
-
-
-
+    return doQuery(url, widget);
+}
 
 void ManagerPrivate::exportHighscores(QTextStream &s)
 {
