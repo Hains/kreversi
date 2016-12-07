@@ -160,25 +160,15 @@ class ConfigDialog : public QDialog
  public:
     explicit ConfigDialog(QWidget *parent);
 
-    bool hasBeenSaved() const { return _saved; }
-
- private slots:
-    void modifiedSlot();
-    void removeSlot();
-    void accept();
-    void slotApply() { save(); }
-    void nickNameChanged(const QString &);
 
  private:
-    bool         _saved;
     QCheckBox   *_WWHEnabled;
     QLineEdit   *_nickname, *_comment;
     KLineEdit   *_key, *_registeredName;
     QPushButton *_removeButton;
     QDialogButtonBox *buttonBox;
 
-    void load();
-    bool save();
+ 
 };
 
 //-----------------------------------------------------------------------------

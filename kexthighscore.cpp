@@ -48,12 +48,8 @@ void setGameType(uint type)
 
 bool configure(QWidget *parent)
 {
-    internal->checkFirst();
-    ConfigDialog *cd = new ConfigDialog(parent);
-    cd->exec();
-    bool saved = cd->hasBeenSaved();
-    delete cd;
-    return saved;
+    
+    return true;
 }
 
 void show(QWidget *parent, int rank)
