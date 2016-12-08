@@ -65,8 +65,7 @@ void show(QWidget *parent, int rank)
 
 void submitScore(const Score &score, QWidget *widget)
 {
-    int rank = internal->submitScore(score, widget,
-                                     internal->showMode!=Manager::NeverShow);
+    int rank = internal->submitScore(score, widget);
 
     switch (internal->showMode) {
     case Manager::AlwaysShow:

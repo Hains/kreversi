@@ -746,7 +746,7 @@ void ManagerPrivate::checkFirst()
 }
 
 int ManagerPrivate::submitScore(const Score &ascore,
-                                QWidget *widget, bool askIfAnonymous)
+                                QWidget *widget)
 {
     checkFirst();
 
@@ -756,8 +756,7 @@ int ManagerPrivate::submitScore(const Score &ascore,
 
     int rank = -1;
     if ( _hsConfig->lockForWriting(widget) ) { // no GUI when locking
-        // check again new name in case the config file has been changed...
-        
+
 
         // commit locally
         _playerInfos->submitScore(score);

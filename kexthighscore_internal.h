@@ -239,7 +239,7 @@ class ManagerPrivate
     void setGameType(uint type);
     void checkFirst();
     int submitLocal(const Score &score);
-    int submitScore(const Score &score, QWidget *widget, bool askIfAnonymous);
+    int submitScore(const Score &score, QWidget *widget);
     Score readScore(uint i) const;
 
     uint gameType() const        { return _gameType; }
