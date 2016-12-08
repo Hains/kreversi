@@ -568,50 +568,8 @@ bool ConfigDialog::save()
 }
 
 //-----------------------------------------------------------------------------
-AskNameDialog::AskNameDialog(QWidget *parent)
-    : QDialog(parent)
-{
-//     kDebug(11001) << ": AskNameDialog";
 
-    setWindowTitle( i18n("Enter Your Nickname") );
 
-    internal->hsConfig().readCurrentConfig();
-    QVBoxLayout *top = new QVBoxLayout;
-    //top->setMargin( QApplication::style()->pixelMetric(QStyle::PM_DefaultChildMargin) );
-    //top->setSpacing( QApplication::style()->pixelMetric(QStyle::PM_DefaultLayoutSpacing) );
-    setLayout(top);
-        
-    QLabel *label =
-        new QLabel(i18n("Congratulations, you have won!"), this);
-    top->addWidget(label);
 
-    QHBoxLayout *hbox = new QHBoxLayout;
-    top->addLayout(hbox);
-    label = new QLabel(i18n("Enter your nickname:"), this);
-    hbox->addWidget(label);
-    _edit = new QLineEdit(this);
-    _edit->setFocus();
-    connect(_edit, SIGNAL(textChanged(QString)), SLOT(nameChanged()));
-    hbox->addWidget(_edit);
-
-    //top->addSpacing(QApplication::style()->pixelMetric(QStyle::PM_DefaultLayoutSpacing));
-    _checkbox = new QCheckBox(i18n("Do not ask again."),  this);
-    top->addWidget(_checkbox);
-    
-    QDialogButtonBox *buttonBox = new QDialogButtonBox(this);
-    
-    buttonBox->setStandardButtons(QDialogButtonBox::Ok | QDialogButtonBox::Cancel); 
-    connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
-    connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
-    top->addWidget(buttonBox);
-
-    nameChanged(buttonBox);
-}
-
-void AskNameDialog::nameChanged(QDialogButtonBox *box)
-{
-    box->button(QDialogButtonBox::Ok)->setEnabled( !name().isEmpty()
-                      && !internal->playerInfos().isNameUsed(name())); 
-}
 
 } // namespace

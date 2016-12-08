@@ -754,31 +754,16 @@ int ManagerPrivate::submitScore(const Score &ascore,
     score.setData(QStringLiteral( "id" ), _playerInfos->id() + 1);
     score.setData(QStringLiteral( "date" ), QDateTime::currentDateTime());
 
-    // ask new name if anonymous and winner
-    const QLatin1String dontAskAgainName = QLatin1String( "highscore_ask_name_dialog" );
-    QString newName;
-    KMessageBox::ButtonCode dummy;
-    if ( score.type()==Won && askIfAnonymous && _playerInfos->isAnonymous()
-     && KMessageBox::shouldBeShownYesNo(dontAskAgainName, dummy) ) {
-         AskNameDialog d(widget);
-         if ( d.exec()==QDialog::Accepted ) newName = d.name();
-         if ( d.dontAskAgain() )
-             KMessageBox::saveDontShowAgainYesNo(dontAskAgainName,
-                                                 KMessageBox::No);
-    }
-
     int rank = -1;
     if ( _hsConfig->lockForWriting(widget) ) { // no GUI when locking
         // check again new name in case the config file has been changed...
-        if ( !newName.isEmpty() && !_playerInfos->isNameUsed(newName) )
-             _playerInfos->modifyName(newName);
+        
 
         // commit locally
         _playerInfos->submitScore(score);
         if ( score.type()==Won ) rank = submitLocal(score);
         _hsConfig->writeAndUnlock();
     }
- 
     return rank;
 }
 

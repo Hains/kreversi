@@ -190,10 +190,7 @@ class AskNameDialog : public QDialog
 
     QString name() const { return _edit->text(); }
     bool dontAskAgain() const { return _checkbox->isChecked(); }
-
- private slots:
-    void nameChanged(QDialogButtonBox *box);
-
+   
  private:
     QLineEdit *_edit;
     QCheckBox *_checkbox;
