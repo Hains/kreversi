@@ -154,47 +154,6 @@ private:
 };
 
 //-----------------------------------------------------------------------------
-class ConfigDialog : public QDialog
-{
- Q_OBJECT
- public:
-    explicit ConfigDialog(QWidget *parent);
-
-    bool hasBeenSaved() const { return _saved; }
-
- private slots:
-    void modifiedSlot();
-    void removeSlot();
-    void accept();
-    void slotApply() { save(); }
-    void nickNameChanged(const QString &);
-
- private:
-    bool         _saved;
-    QCheckBox   *_WWHEnabled;
-    QLineEdit   *_nickname, *_comment;
-    KLineEdit   *_key, *_registeredName;
-    QPushButton *_removeButton;
-    QDialogButtonBox *buttonBox;
-
-    void load();
-    bool save();
-};
-
-//-----------------------------------------------------------------------------
-class AskNameDialog : public QDialog
-{
- Q_OBJECT
- public:
-    explicit AskNameDialog(QWidget *parent);
-
-    QString name() const { return _edit->text(); }
-    bool dontAskAgain() const { return _checkbox->isChecked(); }
-
- private:
-    QLineEdit *_edit;
-    QCheckBox *_checkbox;
-};
 
 } // namespace
 
