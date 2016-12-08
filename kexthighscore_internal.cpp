@@ -33,7 +33,6 @@
 
 #include <kuser.h>
 #include <kio/job.h>
-#include <QFile>
 #include <kmessagebox.h>
 #include <kcodecs.h>
 #include "kexthighscore.h"
