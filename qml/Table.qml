@@ -25,7 +25,7 @@ import "globals.js" as Globals
   */
 
 Item {
-    id: tableContainer    
+    id: tableContainer
 
     /**
       * Is board showing labels or not
