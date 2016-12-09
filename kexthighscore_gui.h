@@ -17,6 +17,7 @@
     Boston, MA 02110-1301, USA.
 */
 
+
 #ifndef KEXTHIGHSCORE_GUI_H
 #define KEXTHIGHSCORE_GUI_H
 
@@ -27,8 +28,9 @@
 #include <QDialogButtonBox>
 #include <QDialog>
 
-#include "kexthighscore.h"
 #include <kpagedialog.h>
+
+#include "kexthighscore.h"
 
 
 class QTabWidget;

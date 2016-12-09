@@ -38,6 +38,7 @@
 #include <kiconloader.h>
 #include <klineedit.h>
 #include <kguiitem.h>
+
 #include "kexthighscore_internal.h"
 #include "kexthighscore_gui.h"
 #include "kexthighscore.h"

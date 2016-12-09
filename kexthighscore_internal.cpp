@@ -17,24 +17,26 @@
     Boston, MA 02110-1301, USA.
 */
 
-#include "kexthighscore_internal.h"
-#include <pwd.h>
-#include <sys/types.h>
-#include <unistd.h>
+
 #include <QFile>
 #include <QLayout>
 #include <qdom.h>
-//Added by qt3to4:
 #include <QTextStream>
 #include <QVector>
 #include <QCryptographicHash>
 
+#include <pwd.h>
+#include <sys/types.h>
+#include <unistd.h>
 #include <kuser.h>
 #include <kmessagebox.h>
 #include <kcodecs.h>
+
 #include "kexthighscore.h"
+#include "kexthighscore_internal.h"
 #include "kexthighscore_gui.h"
 #include "kemailsettings.h"
+
 
 // TODO Decide if want to support
 // a build time HIGHSCORE_DIRECTORY or not
