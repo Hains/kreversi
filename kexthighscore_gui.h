@@ -22,18 +22,16 @@
 
 #include <QCheckBox>
 #include <QLineEdit>
+#include <QtCore/QList>
 #include <QTreeWidget>
 #include <QDialogButtonBox>
 #include <QDialog>
+#include "kexthighscore.h"
 #include <kpagedialog.h>
 
-#include <QtCore/QList>
-
-#include "kexthighscore.h"
 
 class QTabWidget;
 class KLineEdit;
-class KUrlLabel;
 
 namespace KExtHighscore
 {
@@ -103,7 +101,6 @@ class HighscoresWidget : public QWidget
  private:
     QTabWidget     *_tw;
     HighscoresList *_scoresList, *_playersList;
-    KUrlLabel      *_scoresUrl, *_playersUrl;
     AdditionalTab  *_statsTab, *_histoTab;
 };
 

@@ -138,7 +138,7 @@ void HighscoresList::load(const ItemArray &items, int highlight)
 //-----------------------------------------------------------------------------
 HighscoresWidget::HighscoresWidget(QWidget *parent)
     : QWidget(parent),
-      _scoresUrl(0), _playersUrl(0), _statsTab(0), _histoTab(0)
+      _statsTab(0), _histoTab(0)
 {
 //     kDebug(11001) << ": HighscoresWidget";
 
