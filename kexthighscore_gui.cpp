@@ -178,23 +178,6 @@ HighscoresWidget::HighscoresWidget(QWidget *parent)
         _histoTab = new HistogramTab(0);
         _tw->addTab(_histoTab, i18n("Histogram"));
     }
-
-    // url labels
-    if ( internal->isWWHSAvailable() ) {
-        QUrl url = internal->queryUrl(ManagerPrivate::Scores);
-        _scoresUrl = new KUrlLabel(url.url(),
-                                   i18n("View world-wide highscores"), this);
-        connect(_scoresUrl, SIGNAL(leftClickedUrl(QString)),
-                SLOT(showURL(QString)));
-        vbox->addWidget(_scoresUrl);
-
-        url = internal->queryUrl(ManagerPrivate::Players);
-        _playersUrl = new KUrlLabel(url.url(),
-                                    i18n("View world-wide players"), this);
-        connect(_playersUrl, SIGNAL(leftClickedUrl(QString)),
-                SLOT(showURL(QString)));
-        vbox->addWidget(_playersUrl);
-    }
     load(-1);
 }
 
