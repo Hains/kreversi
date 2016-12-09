@@ -726,7 +726,6 @@ int ManagerPrivate::submitScore(const Score &ascore,
     int rank = -1;
     if ( _hsConfig->lockForWriting(widget) ) { // no GUI when locking
 
-
         // commit locally
         _playerInfos->submitScore(score);
         if ( score.type()==Won ) rank = submitLocal(score);
