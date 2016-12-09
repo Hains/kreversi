@@ -17,8 +17,6 @@
     Boston, MA 02110-1301, USA.
 */
 
-#include "kexthighscore_gui.h"
-
 
 #include <QLayout>
 #include <QTextStream>
@@ -41,6 +39,7 @@
 #include <klineedit.h>
 #include <kguiitem.h>
 #include "kexthighscore_internal.h"
+#include "kexthighscore_gui.h"
 #include "kexthighscore.h"
 #include "kexthighscore_tab.h"
 
