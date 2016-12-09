@@ -18,11 +18,9 @@
 */
 
 #include "kexthighscore_internal.h"
-
 #include <pwd.h>
 #include <sys/types.h>
 #include <unistd.h>
-
 #include <QFile>
 #include <QLayout>
 #include <qdom.h>
@@ -32,7 +30,6 @@
 #include <QCryptographicHash>
 
 #include <kuser.h>
-#include <kio/job.h>
 #include <kmessagebox.h>
 #include <kcodecs.h>
 #include "kexthighscore.h"

@@ -37,12 +37,9 @@
 
 #include <kmessagebox.h>
 #include <kurllabel.h>
-#include <krun.h>
-
 #include <kiconloader.h>
 #include <klineedit.h>
 #include <kguiitem.h>
-
 #include "kexthighscore_internal.h"
 #include "kexthighscore.h"
 #include "kexthighscore_tab.h"

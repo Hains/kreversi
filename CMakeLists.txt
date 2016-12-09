@@ -22,7 +22,6 @@ find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
     IconThemes
     ItemModels
     ItemViews
-    KIO
     NewStuff
     Service
     WidgetsAddons
@@ -81,7 +80,6 @@ target_link_libraries(kreversi
     KF5::Crash
     KF5::DBusAddons
     KF5::Declarative
-    KF5::KIOWidgets 
     KF5::IconThemes
     KF5::XmlGui
     KF5KDEGames
