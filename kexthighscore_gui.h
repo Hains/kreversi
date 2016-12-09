@@ -26,6 +26,7 @@
 #include <QTreeWidget>
 #include <QDialogButtonBox>
 #include <QDialog>
+
 #include "kexthighscore.h"
 #include <kpagedialog.h>
 
