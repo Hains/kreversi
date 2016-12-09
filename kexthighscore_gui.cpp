@@ -205,21 +205,12 @@ void HighscoresWidget::changeTab(int i)
         _tw->setCurrentIndex(i);
 }
 
-void HighscoresWidget::showURL(const QString &url)
-{
-//   kDebug(11001) ;
-    (void)new KRun(QUrl(url), this);
-}
-
 void HighscoresWidget::load(int rank)
 {
 //   kDebug(11001) << rank;
     _scoresList->load(internal->scoreInfos(), rank);
     _playersList->load(internal->playerInfos(), internal->playerInfos().id());
-    if (_scoresUrl)
-        _scoresUrl->setUrl(internal->queryUrl(ManagerPrivate::Scores).url());
-    if (_playersUrl)
-        _playersUrl->setUrl(internal->queryUrl(ManagerPrivate::Players).url());
+    
     if (_statsTab) _statsTab->load();
     if (_histoTab) _histoTab->load();
 }

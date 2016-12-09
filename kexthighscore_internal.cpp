@@ -656,36 +656,6 @@ int ManagerPrivate::rank(const Score &score) const
 	return (i<_scoreInfos->maxNbEntries() ? (int)i : -1);
 }
 
-bool ManagerPrivate::modifySettings(const QString &newName,
-                                    const QString &comment, bool WWEnabled,
-                                    QWidget *widget)
-{
-    QString newKey;
-    bool newPlayer = false;
-
-    if (WWEnabled) {
-        newPlayer = _playerInfos->key().isEmpty()
-                    || _playerInfos->registeredName().isEmpty();
-        QUrl url = queryUrl((newPlayer ? Register : Change), newName);
-        Manager::addToQueryURL(url, QStringLiteral( "comment" ), comment);
-
-        QDomNamedNodeMap map;
-            return false;
-    }
-
-    bool ok = _hsConfig->lockForWriting(widget); // no GUI when locking
-    if (ok) {
-        // check again name in case the config file has been changed...
-        // if it has, it is unfortunate because the WWW name is already
-        // committed but should be very rare and not really problematic
-        ok = ( !_playerInfos->isNameUsed(newName) );
-        if (ok)
-            _playerInfos->modifySettings(newName, comment, WWEnabled, newKey);
-        _hsConfig->writeAndUnlock();
-    }
-    return ok;
-}
-
 void ManagerPrivate::convertToGlobal()
 {
     // read old highscores
