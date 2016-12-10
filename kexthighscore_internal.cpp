@@ -35,7 +35,6 @@
 #include "kexthighscore.h"
 #include "kexthighscore_internal.h"
 #include "kexthighscore_gui.h"
-#include "kemailsettings.h"
 
 
 // TODO Decide if want to support
@@ -307,17 +306,7 @@ PlayerInfos::PlayerInfos()
         }
     }
 #endif
-    internal->hsConfig().lockForWriting();
-	KEMailSettings emailConfig;
-	emailConfig.setProfile(emailConfig.defaultProfileName());
-	QString name = emailConfig.getSetting(KEMailSettings::RealName);
-	if ( name.isEmpty() || isNameUsed(name) ) name = username;
-	if ( isNameUsed(name) ) name= QLatin1String(ItemContainer::ANONYMOUS);
-#ifdef HIGHSCORE_DIRECTORY
-    internal->hsConfig().writeEntry(_id+1, "username", username);
-    item("name")->write(_id, name);
-#endif
-
+    
     ConfigGroup cg;
     _oldLocalPlayer = cg.hasKey(HS_ID);
     _oldLocalId = cg.readEntry(HS_ID).toUInt();
@@ -348,7 +337,7 @@ PlayerInfos::PlayerInfos()
     else {
         _id = nbEntries();
         cg.writeEntry(HS_ID, _id);
-        item(QStringLiteral( "name" ))->write(_id, name);
+        
     }
 #endif
     _bound = true;
