@@ -306,7 +306,7 @@ PlayerInfos::PlayerInfos()
         }
     }
 #endif
-    
+
     ConfigGroup cg;
     _oldLocalPlayer = cg.hasKey(HS_ID);
     _oldLocalId = cg.readEntry(HS_ID).toUInt();
