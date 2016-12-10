@@ -245,7 +245,6 @@ class ManagerPrivate
 
     uint gameType() const        { return _gameType; }
     uint nbGameTypes() const     { return _nbGameTypes; }
-    bool isWWHSAvailable() const { return !serverURL.isEmpty(); }
     ScoreInfos &scoreInfos()     { return *_scoreInfos; }
     PlayerInfos &playerInfos()   { return *_playerInfos; }
     KHighscore &hsConfig()       { return *_hsConfig; }
@@ -255,7 +254,6 @@ class ManagerPrivate
     void exportHighscores(QTextStream &);
 
     Manager &manager;
-    QUrl     serverURL;
     QString  version;
     bool     showStatistics, showDrawGames, trackLostGames, trackDrawGames;
     Manager::ShowMode showMode;
@@ -271,11 +269,6 @@ class ManagerPrivate
     // return -1 if not a local best score
     int rank(const Score &score) const;
 
-    bool submitWorldWide(const Score &score, QWidget *parent) const;
-    static bool doQuery(const QUrl &url, QWidget *parent,
-                        QDomNamedNodeMap *map = 0);
-    static bool getFromQuery(const QDomNamedNodeMap &map, const QString &name,
-                             QString &value, QWidget *parent);
     void convertToGlobal();
 };
 

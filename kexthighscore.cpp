@@ -137,18 +137,6 @@ void Manager::setShowDrawGamesStatistic(bool show)
     internal->showDrawGames = show;
 }
 
-void Manager::setWWHighscores(const QUrl &url, const QString &version)
-{
-    Q_ASSERT( url.isValid() );
-    internal->serverURL = url;
-    const char *HS_WW_URL = "ww hs url";
-    ConfigGroup cg;
-    if ( cg.hasKey(HS_WW_URL) )
-        internal->serverURL = QUrl(cg.readEntry(HS_WW_URL));
-    else cg.writeEntry(HS_WW_URL, url.url());
-    internal->version = version;
-}
-
 void Manager::setScoreHistogram(const QVector<uint> &scores,
                                 ScoreTypeBound type)
 {
