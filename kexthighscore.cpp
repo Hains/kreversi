@@ -260,16 +260,4 @@ QString Manager::gameTypeLabel(uint gameType, LabelType type) const
     return QString();
 }
 
-void Manager::addToQueryURL(QUrl &url, const QString &item,
-                               const QString &content)
-{
-  QUrlQuery urlquery(url);  
-  Q_ASSERT( !item.isEmpty() && urlquery.queryItemValue(item).isEmpty() );
-
-    QString query = url.query();
-    if ( !query.isEmpty() ) query += QLatin1Char( '&' );
-	query += item + QLatin1Char( '=' ) + QLatin1String( QUrl::toPercentEncoding( content ) );
-	url.setQuery(query);
-}
-
 } // namescape
