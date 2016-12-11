@@ -218,7 +218,6 @@ class PlayerInfos : public ItemArray
     void modifyName(const QString &newName) const;
     void modifySettings(const QString &newName, const QString &comment,
                         bool WWEnabled, const QString &newKey) const;
-    void removeKey();
 
  private:
     bool _newPlayer, _bound, _oldLocalPlayer;

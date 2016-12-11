@@ -353,11 +353,6 @@ void PlayerInfos::createHistoItems(const QVector<uint> &scores, bool bound)
         addItem(histoName(i), new Item((uint)0), true, true);
 }
 
-bool PlayerInfos::isAnonymous() const
-{
-    return ( name()==QLatin1String( ItemContainer::ANONYMOUS ) );
-}
-
 uint PlayerInfos::nbEntries() const
 {
     internal->hsConfig().setHighscoreGroup(QStringLiteral( "players" ));
@@ -369,12 +364,6 @@ QString PlayerInfos::key() const
 {
     ConfigGroup cg;
     return cg.readEntry(HS_KEY, QString());
-}
-
-bool PlayerInfos::isWWEnabled() const
-{
-    ConfigGroup cg;
-    return cg.readEntry(HS_WW_ENABLED, false);
 }
 
 QString PlayerInfos::histoName(int i) const
@@ -466,51 +455,6 @@ bool PlayerInfos::isNameUsed(const QString &newName) const
         if ( newName.toLower()==item(QStringLiteral( "name" ))->read(i).toString().toLower() ) return true;
     if ( newName==i18n(ItemContainer::ANONYMOUS_LABEL) ) return true;
     return false;
-}
-
-void PlayerInfos::modifyName(const QString &newName) const
-{
-    item(QStringLiteral( "name" ))->write(_id, newName);
-}
-
-void PlayerInfos::modifySettings(const QString &newName,
-                                 const QString &comment, bool WWEnabled,
-                                 const QString &newKey) const
-{
-    modifyName(newName);
-    item(QStringLiteral( "comment" ))->write(_id, comment);
-    ConfigGroup cg;
-    cg.writeEntry(HS_WW_ENABLED, WWEnabled);
-    if ( !newKey.isEmpty() ) cg.writeEntry(HS_KEY, newKey);
-    if (WWEnabled) cg.writeEntry(HS_REGISTERED_NAME, newName);
-}
-
-QString PlayerInfos::registeredName() const
-{
-    ConfigGroup cg;
-    return cg.readEntry(HS_REGISTERED_NAME, QString());
-}
-
-void PlayerInfos::removeKey()
-{
-    ConfigGroup cg;
-
-    // save old key/nickname
-    uint i = 0;
-    QString str = QStringLiteral( "%1 old #%2" );
-    QString sk;
-    do {
-        i++;
-        sk = str.arg(QLatin1String( HS_KEY )).arg(i);
-    } while ( !cg.readEntry(sk, QString()).isEmpty() );
-    cg.writeEntry(sk, key());
-    cg.writeEntry(str.arg(QLatin1String( HS_REGISTERED_NAME )).arg(i),
-                            registeredName());
-
-    // clear current key/nickname
-    cg.deleteEntry(HS_KEY);
-    cg.deleteEntry(HS_REGISTERED_NAME);
-    cg.writeEntry(HS_WW_ENABLED, false);
 }
 
 //-----------------------------------------------------------------------------
