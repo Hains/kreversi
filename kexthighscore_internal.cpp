@@ -261,9 +261,6 @@ uint ScoreInfos::nbEntries() const
 
 //-----------------------------------------------------------------------------
 const char *HS_ID              = "player id";
-const char *HS_REGISTERED_NAME = "registered name";
-const char *HS_KEY             = "player key";
-const char *HS_WW_ENABLED      = "ww hs enabled";
 
 PlayerInfos::PlayerInfos()
 {
@@ -289,47 +286,30 @@ PlayerInfos::PlayerInfos()
     addItem(QStringLiteral( "max lost trend" ), new Item((uint)0), true, true);
     addItem(QStringLiteral( "max won trend" ), new Item((uint)0), true, true);
 
-    QString username = KUser().loginName();
+    QString username = i18n("Thomas");
 
-#ifdef HIGHSCORE_DIRECTORY
-    internal->hsConfig().setHighscoreGroup("players");
-    for (uint i=0, i++) {
-        if ( !internal->hsConfig().hasEntry(i+1, "username") ) {
+
+    internal->hsConfig().setHighscoreGroup(QStringLiteral("players"));
+    for (uint i=0; ;i++) {
+        if ( !internal->hsConfig().hasEntry(i+1, QStringLiteral("name")) ) {
             _newPlayer = true;
             _id = i;
             break;
         }
-        if ( internal->hsConfig().readEntry(i+1, "username")==username ) {
+        if ( internal->hsConfig().readEntry(i+1, QStringLiteral("name"))==username ) {
             _newPlayer = false;
             _id = i;
             return;
         }
     }
-#endif
 
     ConfigGroup cg;
     _oldLocalPlayer = cg.hasKey(HS_ID);
-    _oldLocalId = cg.readEntry(HS_ID).toUInt();
-    
-#ifdef HIGHSCORE_DIRECTORY
-    if (_oldLocalPlayer) { // player already exists in local config file
-        // copy player data
-        QString prefix = QString::fromLatin1( "%1_").arg(_oldLocalId+1);
-        
-#ifdef __GNUC__
-#warning "kde4 port g.config()->entryMap";
-#endif
-
-    }
-#else
-    _newPlayer = !_oldLocalPlayer;
-    if (_oldLocalPlayer) _id = _oldLocalId;
-    else {
-        _id = nbEntries();
+    _oldLocalId = cg.readEntry(HS_ID).toUInt();   
+  
+     
         cg.writeEntry(HS_ID, _id);
-        item(QStringLiteral( "name" ))->write(_id, username);
-         }
-#endif
+        item(QStringLiteral( "name" ))->write(_id, username);     
 
     _bound = true;
     internal->hsConfig().writeAndUnlock();
