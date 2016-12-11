@@ -293,7 +293,7 @@ PlayerInfos::PlayerInfos()
 
 #ifdef HIGHSCORE_DIRECTORY
     internal->hsConfig().setHighscoreGroup("players");
-    for (uint i=0; ;i++) {
+    for (uint i=0, i++) {
         if ( !internal->hsConfig().hasEntry(i+1, "username") ) {
             _newPlayer = true;
             _id = i;
@@ -310,26 +310,16 @@ PlayerInfos::PlayerInfos()
     ConfigGroup cg;
     _oldLocalPlayer = cg.hasKey(HS_ID);
     _oldLocalId = cg.readEntry(HS_ID).toUInt();
+    
 #ifdef HIGHSCORE_DIRECTORY
     if (_oldLocalPlayer) { // player already exists in local config file
         // copy player data
         QString prefix = QString::fromLatin1( "%1_").arg(_oldLocalId+1);
+        
 #ifdef __GNUC__
 #warning "kde4 port g.config()->entryMap";
 #endif
-#if 0
-        QMap<QString, QString> entries =
-            cg.config()->entryMap("KHighscore_players");
-        QMap<QString, QString>::const_iterator it;
-        for (it=entries.begin(); it!=entries.end(); ++it) {
-            QString key = it.key();
-            if ( key.find(prefix)==0 ) {
-                QString name = key.right(key.length()-prefix.length());
-                if ( name!="name" || !isNameUsed(it.data()) )
-                    internal->hsConfig().writeEntry(_id+1, name, it.data());
-            }
-        }
-#endif
+
     }
 #else
     _newPlayer = !_oldLocalPlayer;
@@ -338,8 +328,9 @@ PlayerInfos::PlayerInfos()
         _id = nbEntries();
         cg.writeEntry(HS_ID, _id);
         item(QStringLiteral( "name" ))->write(_id, username);
-    }
+         }
 #endif
+
     _bound = true;
     internal->hsConfig().writeAndUnlock();
 }
@@ -358,12 +349,6 @@ uint PlayerInfos::nbEntries() const
     internal->hsConfig().setHighscoreGroup(QStringLiteral( "players" ));
     const QStringList list = internal->hsConfig().readList(QStringLiteral( "name" ), -1);
     return list.count();
-}
-
-QString PlayerInfos::key() const
-{
-    ConfigGroup cg;
-    return cg.readEntry(HS_KEY, QString());
 }
 
 QString PlayerInfos::histoName(int i) const
