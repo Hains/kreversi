@@ -337,7 +337,7 @@ PlayerInfos::PlayerInfos()
     else {
         _id = nbEntries();
         cg.writeEntry(HS_ID, _id);
-        
+        item(QStringLiteral( "name" ))->write(_id, username);
     }
 #endif
     _bound = true;
