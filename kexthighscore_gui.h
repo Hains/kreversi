@@ -17,21 +17,19 @@
     Boston, MA 02110-1301, USA.
 */
 
-
 #ifndef KEXTHIGHSCORE_GUI_H
 #define KEXTHIGHSCORE_GUI_H
 
 #include <QCheckBox>
 #include <QLineEdit>
-#include <QtCore/QList>
 #include <QTreeWidget>
 #include <QDialogButtonBox>
 #include <QDialog>
+#include <KPageDialog>
 
-#include <kpagedialog.h>
+#include <QtCore/QList>
 
 #include "kexthighscore.h"
-
 
 class QTabWidget;
 class KLineEdit;

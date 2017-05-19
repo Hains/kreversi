@@ -32,12 +32,12 @@
 #include <QFileDialog>
 #include <QIcon>
 #include <QtCore/QTemporaryFile>
+#include <KIconLoader>
+#include <KLineEdit>
+#include <KGuiItem>
 
 #include <kmessagebox.h>
 #include <kurllabel.h>
-#include <kiconloader.h>
-#include <klineedit.h>
-#include <kguiitem.h>
 
 #include "kexthighscore_internal.h"
 #include "kexthighscore_gui.h"

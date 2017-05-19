@@ -22,20 +22,21 @@
  * Boston, MA 02110-1301, USA.
  *
  ********************************************************************/
-#include <mainwindow.h>
+#include "mainwindow.h"
 
 #include <QDebug>
+#include <QDesktopWidget>
 #include <QIcon>
+#include <QStatusBar>
+
+#include <KActionCollection>
 #include <KLocalizedString>
 #include <KMessageBox>
-#include <QStatusBar>
-#include <KActionCollection>
 #include <KStandardGameAction>
-#include <QDesktopWidget>
-#include <commondefs.h>
-#include <kreversihumanplayer.h>
-#include <kreversicomputerplayer.h>
 
+#include "commondefs.h"
+#include "kreversihumanplayer.h"
+#include "kreversicomputerplayer.h"
 #include "kexthighscore.h"
 
 static const int BLACK_STATUSBAR_ID = 1;
@@ -61,9 +62,9 @@ KReversiMainWindow::KReversiMainWindow(QWidget* parent, bool startDemo)
 
     common->setText(i18n("Press start game!"));
     statusBar()->insertPermanentWidget(COMMON_STATUSBAR_ID, common);
-    black->setText(i18n(""));
+    black->setText(QString());
     statusBar()->insertPermanentWidget(BLACK_STATUSBAR_ID, black);
-    white->setText(i18n(""));
+    white->setText(QString());
     statusBar()->insertPermanentWidget(WHITE_STATUSBAR_ID, white);
 
     // initialize difficulty stuff

@@ -17,10 +17,11 @@
     Boston, MA 02110-1301, USA.
 */
 
-
 #ifndef KEXTHIGHSCORE_INTERNAL_H
 #define KEXTHIGHSCORE_INTERNAL_H
 
+#include <KConfig>
+#include <KConfigGroup>
 #include <KLocalizedString>
 #include <KSharedConfig>
 #include <KHighscore>
@@ -30,10 +31,8 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QUrl>
 
-#include <kconfiggroup.h>
-#include <kconfig.h>
-
 #include "kexthighscore.h"
+
 
 
 class QTextStream;
