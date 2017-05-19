@@ -207,6 +207,8 @@ class PlayerInfos : public ItemArray
     uint id() const { return _id; }
     uint oldLocalId() const { return _oldLocalId; }
 
+	void currentPlayerName();
+
     void createHistoItems(const QVector<uint> &scores, bool bound);
     QString histoName(int i) const;
     int histoSize() const;

@@ -286,22 +286,28 @@ PlayerInfos::PlayerInfos()
     addItem(QStringLiteral( "max lost trend" ), new Item((uint)0), true, true);
     addItem(QStringLiteral( "max won trend" ), new Item((uint)0), true, true);
 
-    QString username = i18n("Thomas");
+	currentPlayerName();
 
+}
 
-    internal->hsConfig().setHighscoreGroup(QStringLiteral("players"));
-    for (uint i=0; ;i++) {
-        if ( !internal->hsConfig().hasEntry(i+1, QStringLiteral("name")) ) {
-            _newPlayer = true;
-            _id = i;
-            break;
-        }
-        if ( internal->hsConfig().readEntry(i+1, QStringLiteral("name"))==username ) {
-            _newPlayer = false;
-            _id = i;
-            return;
-        }
-    }
+void PlayerInfos::currentPlayerName()
+{
+
+	QString username = KUser().loginName();
+
+	internal->hsConfig().setHighscoreGroup(QStringLiteral("players"));
+	for (uint i=0; ;i++) {
+		if ( !internal->hsConfig().hasEntry(i+1, QStringLiteral("name")) ) {
+			_newPlayer = true;
+			_id = i;
+			break;
+		}
+		if ( internal->hsConfig().readEntry(i+1, QStringLiteral("name"))==username ) {
+			_newPlayer = false;
+			_id = i;
+			return;
+		}
+}
 
     ConfigGroup cg;
     _oldLocalPlayer = cg.hasKey(HS_ID);
