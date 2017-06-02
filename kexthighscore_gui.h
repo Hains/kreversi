@@ -79,7 +79,7 @@ class HighscoresList : public ScoresList
     void load(const ItemArray &, int highlight);
 
  protected:
-    QString itemText(const ItemContainer &, uint row) const;
+    QString itemText(const ItemContainer &, uint row) const Q_DECL_OVERRIDE;
 };
 
 class HighscoresWidget : public QWidget
@@ -129,8 +129,8 @@ public:
     LastMultipleScoresList(const QVector<Score> &, QWidget *parent);
 
 private:
-    void addLineItem(const ItemArray &, uint index, QTreeWidgetItem *line);
-    QString itemText(const ItemContainer &, uint row) const;
+    void addLineItem(const ItemArray &, uint index, QTreeWidgetItem *line) Q_DECL_OVERRIDE;
+    QString itemText(const ItemContainer &, uint row) const Q_DECL_OVERRIDE;
 
 private:
     const QVector<Score> &_scores;
@@ -143,14 +143,12 @@ public:
     TotalMultipleScoresList(const QVector<Score> &, QWidget *parent);
 
 private:
-    void addLineItem(const ItemArray &, uint index, QTreeWidgetItem *line);
-    QString itemText(const ItemContainer &, uint row) const;
+    void addLineItem(const ItemArray &, uint index, QTreeWidgetItem *line) Q_DECL_OVERRIDE;
+    QString itemText(const ItemContainer &, uint row) const Q_DECL_OVERRIDE;
 
 private:
     const QVector<Score> &_scores;
 };
-
-//-----------------------------------------------------------------------------
 
 } // namespace
 
