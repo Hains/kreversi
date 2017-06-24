@@ -44,7 +44,7 @@ StartGameDialog::StartGameDialog(QWidget *parent, KgThemeProvider *provider) :
     setModal(true);
 
     setFixedSize(minimumSizeHint());
-    
+ 
     setWindowTitle(i18n("New game"));
 
     QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|QDialogButtonBox::Close);
