@@ -109,14 +109,6 @@ Item {
         spriteKey: "background"
     }
 
-    CanvasItem {
-        id: board_image
-        width: Math.min(parent.width, parent.height)
-        height: Math.min(parent.width, parent.height)
-        anchors.horizontalCenter: parent.horizontalCenter
-        spriteKey: "board"
-    }
-
     Board {
         id: board
         width: Math.min(parent.width, parent.height)
