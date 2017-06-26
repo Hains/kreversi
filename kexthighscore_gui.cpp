@@ -18,26 +18,27 @@
 */
 
 
-#include <QLayout>
-#include <QTextStream>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QVBoxLayout>
-#include <QGroupBox>
-#include <QHeaderView>
-#include <QTabWidget>
-#include <QPushButton>
 #include <QApplication>
 #include <QFileDialog>
+#include <QGridLayout>
+#include <QGroupBox>
+#include <QVBoxLayout>
+#include <QHeaderView>
 #include <QIcon>
-#include <QtCore/QTemporaryFile>
-#include <KIconLoader>
-#include <KLineEdit>
-#include <KGuiItem>
+#include <QLabel>
+#include <QLayout>
+#include <QPushButton>
+#include <QTabWidget>
+#include <QTemporaryFile>
+#include <QTextStream>
+#include <QVBoxLayout>
 
-#include <kmessagebox.h>
-#include <kurllabel.h>
+#include <KGuiItem>
+#include <KIconLoader>
+#include <KIO/StatJob>
+#include <KIO/CopyJob>
+#include <KJobWidgets>
+#include <KMessageBox>
 
 #include "kexthighscore_internal.h"
 #include "kexthighscore_gui.h"

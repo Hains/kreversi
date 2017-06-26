@@ -59,7 +59,7 @@ public slots:
     void slotMoveFinished();
     void slotGameOver();
     void slotUseColoredChips(bool);
-    void slotShowMovesHistory(bool);
+    void slotToggleBoardLabels(bool);
     void slotHighscores();
     void slotDialogReady();
 private:
@@ -93,12 +93,11 @@ private:
     QAction *m_hintAct;
     KToggleAction *m_showLast;
     KToggleAction *m_showLegal;
-    KToggleAction *m_showMovesAct;
+    QAction *m_showMovesAct;
     KSelectAction *m_animSpeedAct;
     KToggleAction *m_coloredChipsAct;
 
-    QPointer<QLabel> black = new QLabel;
-    QPointer<QLabel> white = new QLabel;
-    QPointer<QLabel> common = new QLabel;
+    enum { common = 1, black, white };
+    QLabel *m_statusBarLabel[4];
 };
 #endif

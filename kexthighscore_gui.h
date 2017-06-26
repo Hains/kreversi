@@ -32,7 +32,6 @@
 #include "kexthighscore.h"
 
 class QTabWidget;
-class KLineEdit;
 
 namespace KExtHighscore
 {
