@@ -25,15 +25,14 @@
 #include <KLocalizedString>
 #include <KSharedConfig>
 #include <KHighscore>
+
+#include <QDateTime>
 #include <QLoggingCategory>
-#include <QtCore/QTextStream>
-#include <QtCore/QVector>
-#include <QtCore/QDateTime>
-#include <QtCore/QUrl>
+#include <QTextStream>
+#include <QUrl>
+#include <QVector>
 
 #include "kexthighscore.h"
-
-
 
 class QTextStream;
 class QDomNamedNodeMap;
