@@ -1,9 +1,9 @@
 project(kreversi)
 cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 set (QT_MIN_VERSION "5.7.0")
-set (KF5_MIN_VERSION "5.15.0")
+set (KF5_MIN_VERSION "5.30.0")
 
-find_package(ECM 1.7.0 REQUIRED NO_MODULE)
+find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
 find_package(Qt5 ${QT_MIN_VERSION} REQUIRED NO_MODULE COMPONENTS Widgets Qml Quick QuickWidgets Svg Test)
@@ -64,7 +64,7 @@ set(kreversi_SRCS
     mainwindow.cpp
     main.cpp
 )
-
+qt5_add_resources(kreversi_SRCS kreversi.qrc)
 ki18n_wrap_ui(kreversi_SRCS startgamedialog.ui)
 
 kconfig_add_kcfg_files(kreversi_SRCS preferences.kcfgc)
@@ -92,8 +92,6 @@ install(TARGETS kreversi  ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
 ########### install files ###############
 
 install(PROGRAMS org.kde.kreversi.desktop  DESTINATION  ${KDE_INSTALL_APPDIR})
-#install(FILES kreversi.kcfg  DESTINATION  ${KDE_INSTALL_KCFGDIR})
-install(FILES kreversiui.rc  DESTINATION  ${KDE_INSTALL_KXMLGUI5DIR}/kreversi)
 install(DIRECTORY qml DESTINATION ${KDE_INSTALL_DATADIR}/kreversi)
 install(FILES org.kde.kreversi.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
