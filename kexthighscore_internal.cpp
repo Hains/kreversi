@@ -18,8 +18,6 @@
 */
 
 
-#include <QFile>
-#include <QLayout>
 #include <qdom.h>
 #include <QTextStream>
 #include <QVector>

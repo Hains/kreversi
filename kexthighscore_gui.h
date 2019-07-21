@@ -116,7 +116,7 @@ class HighscoresDialog : public KPageDialog
 
  private:
     int _rank, _tab;
-    QWidget *_current;
+    QWidget *_current = nullptr;
     QList<KPageWidgetItem*> _pages;
 };
 

@@ -27,7 +27,6 @@
 #include <KHighscore>
 
 #include <QDateTime>
-#include <QLoggingCategory>
 #include <QTextStream>
 #include <QUrl>
 #include <QVector>

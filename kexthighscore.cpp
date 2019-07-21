@@ -19,7 +19,6 @@
 
 #include "kexthighscore.h"
 
-#include <QLayout>
 #include <QUrlQuery>
 #include <QVector>
 
@@ -32,7 +31,7 @@ namespace KExtHighscore
 {
 
 //-----------------------------------------------------------------------------
-ManagerPrivate *internal = 0;
+ManagerPrivate *internal = nullptr;
 
 uint gameType()
 {
@@ -113,7 +112,7 @@ Manager::Manager(uint nbGameTypes, uint maxNbEntries)
 Manager::~Manager()
 {
     delete internal;
-    internal = 0;
+    internal = nullptr;
 }
 
 void Manager::setTrackLostGames(bool track)
@@ -184,7 +183,7 @@ bool Manager::isStrictlyLess(const Score &s1, const Score &s2) const
 
 Item *Manager::createItem(ItemType type)
 {
-    Item *item = 0;
+    Item *item = nullptr;
     switch (type) {
     case ScoreDefault:
         item = new Item((uint)0, i18n("Score"), Qt::AlignRight);
