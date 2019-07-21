@@ -99,9 +99,9 @@ class HighscoresWidget : public QWidget
     void tabChanged() { emit tabChanged(_tw->currentIndex()); }
 
  private:
-    QTabWidget     *_tw;
-    HighscoresList *_scoresList, *_playersList;
-    AdditionalTab  *_statsTab, *_histoTab;
+    QTabWidget     *_tw = nullptr;
+    HighscoresList *_scoresList, *_playersList = nullptr;
+    AdditionalTab  *_statsTab, *_histoTab = nullptr;
 };
 
 class HighscoresDialog : public KPageDialog
