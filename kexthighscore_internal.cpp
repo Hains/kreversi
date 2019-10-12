@@ -17,13 +17,11 @@
     Boston, MA 02110-1301, USA.
 */
 
-
 #include <qdom.h>
 #include <QTextStream>
 #include <QVector>
 #include <QCryptographicHash>
 
-#include <pwd.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <kuser.h>
