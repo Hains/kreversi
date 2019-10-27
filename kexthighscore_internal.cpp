@@ -23,7 +23,6 @@
 #include <QCryptographicHash>
 
 #include <sys/types.h>
-#include <unistd.h>
 #include <kuser.h>
 #include <kmessagebox.h>
 #include <kcodecs.h>
