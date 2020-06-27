@@ -41,6 +41,9 @@ enum ChipColor {
     NoColor = 2
 };
 
+static const int nRows = 8;
+static const int nCols = 8;
+
 /**
  * Represents position on board.
  */
@@ -52,7 +55,7 @@ struct KReversiPos {
     int col;
 
     bool isValid() const {
-        return (row >= 0 && col >= 0 && row < 8 && col < 8);
+        return (row >= 0 && col >= 0 && row < nRows && col < nCols);
     }
 };
 
@@ -64,7 +67,7 @@ struct KReversiMove: public KReversiPos {
     KReversiMove(ChipColor col = NoColor, int r = -1, int c = -1)
         : KReversiPos(r, c), color(col) { }
 
-    KReversiMove(ChipColor col, const KReversiPos &pos)
+    KReversiMove(ChipColor col, KReversiPos pos)
         : KReversiPos(pos), color(col) { }
 
     ChipColor color;
@@ -72,7 +75,7 @@ struct KReversiMove: public KReversiPos {
     bool isValid() const {
         return (color != NoColor
                 && row >= 0 && col >= 0
-                && row < 8 && col < 8);
+                && row < nRows && col < nCols);
     }
 };
 
@@ -106,11 +109,11 @@ ChipColor opponentColorFor(ChipColor color);
 /**
  * @return Human-readable string representing @p color
  */
-QString colorToString(const ChipColor &color);
+QString colorToString(ChipColor color);
 /**
  * @return Human-readable string representing @p move
  */
-QString moveToString(const KReversiMove& move);
+QString moveToString(KReversiMove move);
 /**
  * @return Index of current difficulty level in increasing order
  */
