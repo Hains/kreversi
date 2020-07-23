@@ -31,7 +31,6 @@
 #include "kexthighscore_internal.h"
 #include "kexthighscore_gui.h"
 
-
 // TODO Decide if want to support
 // a build time HIGHSCORE_DIRECTORY or not
 // #include <config-highscore.h>
