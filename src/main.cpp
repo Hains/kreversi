@@ -27,9 +27,6 @@
 
 int main(int argc, char **argv)
 {
-#if HAVE_KICONTHEME
-    KIconTheme::initTheme();
-#endif
     QApplication application(argc, argv);
 #if HAVE_STYLE_MANAGER
     KStyleManager::initStyle();
