@@ -146,6 +146,6 @@ GenericName[wa]=Djeu d' platea Reversi
 GenericName[x-test]=xxReversi Board Gamexx
 GenericName[zh_CN]=黑白棋游戏
 GenericName[zh_TW]=黑白棋棋盤遊戲
-Icon=kreversi
+Icon=/usr/share/icons/hicolor/128x128/apps/kreversi.png
 StartupNotify=true
 Categories=Qt;KDE;Game;BoardGame;
